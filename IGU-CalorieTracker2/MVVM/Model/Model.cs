@@ -107,7 +107,7 @@ namespace IGU_CalorieTracker2
             if (this.diaSeleccionado == null) return;
             int indice = this.Dias.IndexOf(this.diaSeleccionado);
             //Evitamos indices negativos
-            indice = (indice + howMuch >= 0) ? indice + howMuch : this.Dias.Count() - howMuch;
+            indice = (indice + howMuch >= 0) ? indice + howMuch : this.Dias.Count() + howMuch;
             this.diaSeleccionado = this.Dias[indice];
         }
         #endregion
