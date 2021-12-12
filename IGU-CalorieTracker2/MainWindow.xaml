@@ -1,0 +1,75 @@
+﻿<Window x:Class="IGU_CalorieTracker2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IGU_CalorieTracker2"
+        xmlns:viewModel="clr-namespace:IGU_CalorieTracker2.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="400" Width="900"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+        <Border Background="#272537" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="CalorieTracker" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"></Label>
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <RadioButton Name="FileButton" Content="Archivo" Height="50" Foreground="White" Style="{StaticResource RadioButtonTheme}" Click="ContextMenuButton_Click">
+                    <RadioButton.ContextMenu>
+                        <ContextMenu x:Name="FileButtonMenu" PlacementRectangle="{Binding RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="Importar" Click="FileButton_Import_Click"></MenuItem>
+                            <MenuItem Header="Exportar" Click="FileButton_Export_Click"></MenuItem>
+                        </ContextMenu>
+                    </RadioButton.ContextMenu>
+                </RadioButton>
+                <RadioButton Content="Calendario" Height="50" Foreground="White"  Style="{StaticResource RadioButtonTheme}" Click="DateChooserButton_Click"></RadioButton>
+                <RadioButton Content="Vista global" Height="50" Foreground="White"  Style="{StaticResource RadioButtonTheme}" Click="VistaGlobalButton_Click"></RadioButton>
+                <!--<RadioButton Content="Opciones" Height="50" Foreground="White" Style="{StaticResource RadioButtonTheme}"></RadioButton>-->
+                <RadioButton Name="DebugButton" Content="Debugging" Height="50" Foreground="White" Style="{StaticResource RadioButtonTheme}" Click="ContextMenuButton_Click">
+                    <RadioButton.ContextMenu>
+                        <ContextMenu x:Name="DebugButtonMenu" PlacementRectangle="{Binding RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="Generar datos aleatorios" Click="DebugMenu_Generate_Click"></MenuItem>
+                            <MenuItem Header="Borrar todos los datos" Click="DebugMenu_Clear_Click"></MenuItem>
+                        </ContextMenu>
+                    </RadioButton.ContextMenu>
+                </RadioButton>
+            </StackPanel>
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Name="BotonFlechaIzquierda" Visibility="Hidden" 
+                        Style="{StaticResource ModernSingleCharacterButtonTheme}" Content="&lt;" 
+                        Height="50" Width="50" FontSize="22"
+                        Click="BotonFlecha_Click"></Button>
+                <Button Grid.Column="1" Style="{StaticResource ModernSingleCharacterButtonTheme}" Content="+" Height="50" Width="50" FontSize="22" Click="AddData_Click"></Button>
+                <Button Name="BotonFlechaDerecha" Visibility="Hidden" 
+                        Grid.Column="2" Style="{StaticResource ModernSingleCharacterButtonTheme}" Content=">" 
+                        Height="50" Width="50" FontSize="22"
+                        Click="BotonFlecha_Click"></Button>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="5">
+                    <Button Grid.Column="3" Width="15" Height="15" Margin ="5, 0, 5, 0" Style="{StaticResource ModernCircleButtonTheme}" VerticalAlignment="Top" Background="#FFFF70" Click="MinimizeButton_Click"></Button>
+                    <Button Grid.Column="3" Width="15" Height="15" Style="{StaticResource ModernCircleButtonTheme}" VerticalAlignment="Top" Background="#FF7070" Click="CloseButton_Click"></Button>
+                </StackPanel>
+                
+
+            </Grid>
+            <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentView}" Margin="10"></ContentControl>
+        </Grid>
+    </Border>
+</Window>

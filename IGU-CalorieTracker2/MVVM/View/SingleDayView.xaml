@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="IGU_CalorieTracker2.MVVM.View.SingleDayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IGU_CalorieTracker2.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Background="#ffebcd" CornerRadius="20">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+        <Canvas Name="GraphCanvas">
+            <Canvas.LayoutTransform>
+                    <!--Invertimos el canvas verticalemnte por la manera en la que he hecho la funcion de dibujar poligonos; esto es un arreglo temporal.-->
+                    <ScaleTransform ScaleY="-1"/>
+            </Canvas.LayoutTransform>
+                <Grid Name="GridTexto" Width="{Binding ActualWidth, ElementName=GraphCanvas}" Height="{Binding ActualHeight, ElementName=GraphCanvas}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.LayoutTransform>
+                        <!--Invertimos el grid verticalmente para compensar la inversion vertical del canvas-->
+                        <ScaleTransform ScaleY="-1"></ScaleTransform>
+                     </Grid.LayoutTransform>
+                    <TextBlock Name="diaBlock" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Dia"></TextBlock>
+                    <TextBlock Name="desayunoBlock" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Desayuno"></TextBlock>
+                    <TextBlock Name="comidaBlock" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Comida"></TextBlock>
+                    <TextBlock Name="cenaBlock" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Cena"></TextBlock>
+                    <TextBlock Name="snacksBlock" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Snacks"></TextBlock>
+                </Grid>
+            </Canvas>
+        </ScrollViewer>
+        <Border.OpacityMask>
+            <VisualBrush>
+                <VisualBrush.Visual>
+                    <Border 
+                    Background="Black"
+                    SnapsToDevicePixels="True"
+                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                    BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=Border}}"
+                        BorderBrush="White"
+                    />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Border.OpacityMask>
+    </Border>
+</UserControl>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="IGU_CalorieTracker2.VentanaGrid"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IGU_CalorieTracker2"
+        mc:Ignorable="d"
+        Title="VentanaGrid" Height="450" Width="800">
+    <Grid>
+        <Menu>
+            <MenuItem Header="_Archivo">
+                <MenuItem Name ="NewFile" Command="New"></MenuItem>
+                <MenuItem Name="OpenFile" Command="Open"></MenuItem>
+                <MenuItem Name="Save" Command="Save"></MenuItem>
+                <MenuItem Name="SaveAs" Command="SaveAs"></MenuItem>
+                <Separator/>
+                <MenuItem Name="Close" Command="Close"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Herramientas">
+                <MenuItem Name="Settings" Header="_Opciones" Command="Properties"></MenuItem>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>
