@@ -12,7 +12,7 @@ using IGU_CalorieTracker2.Utils;
 
 namespace IGU_CalorieTracker2.MVVM.ViewModel
 {
-    class DateChooserViewModel : ObservableObject
+    class DateChooserViewModel
     {
        
     }

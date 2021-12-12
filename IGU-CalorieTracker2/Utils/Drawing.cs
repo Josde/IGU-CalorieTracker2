@@ -14,6 +14,7 @@ namespace IGU_CalorieTracker2.Utils
     {
         public static Polygon getBar(Point origin, double width, double height, Brush fill)
         {
+            // Devuelve un poligono centrado en origin, con la anchura, altura y color deseados.
             Polygon ret = new Polygon();
             PointCollection pc = new PointCollection();
             Point abajoIzquierda, abajoDerecha, arribaIzquierda, arribaDerecha;
@@ -36,6 +37,7 @@ namespace IGU_CalorieTracker2.Utils
 
         public static TextBlock getText(Point origin, String text, int fontSize, Brush color, bool flip = true)
         {
+            // Devuelve un textblock aproximadamente centrado en origin, de la misma manera que el metodo anterior.
             TextBlock tb = new TextBlock();
             tb.Text = text;
             tb.FontSize = fontSize;

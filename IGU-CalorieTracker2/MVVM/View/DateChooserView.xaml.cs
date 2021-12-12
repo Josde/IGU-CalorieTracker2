@@ -26,6 +26,9 @@ namespace IGU_CalorieTracker2.MVVM.View
         
         public class Comida
         {
+            // Esto es una clase temporal que usamos para instanciar el GridView que nos da los detalles de las comidas de cada dia.
+            // Podriamos obviarlo introduciendo nuevas propiedades en Dia y cambiando la manera en la que usamos los datos y los bindings.
+            // Pero esta es la solucion rapida. Si tuviera mas tiempo, haria lo mencionado previamente.
             public Comida(string nombre, float calorias)
             {
                 Nombre = nombre;
@@ -48,6 +51,8 @@ namespace IGU_CalorieTracker2.MVVM.View
 
         public void Datos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Cuando seleccionamos un elemento, cambiamos diaSeleccionado en el Modelo y redibujamos la grafica, pero ahora en modo de un solo dia.
+            // Además, instanciamos la coleccion que da los datos al GridView de detalle de la parte inferior de la ventana.
             Dia select = ListViewDatos.SelectedItem as Dia;
             Model.Instance.diaSeleccionado = select;
             this.cc.Clear();
@@ -58,7 +63,7 @@ namespace IGU_CalorieTracker2.MVVM.View
             
             MainViewModel.SingleDayViewCommand?.Execute(null);
         }
-
+        // Al igual que en AddDataView, escondemos la ventana en vez de cerrarla para no perder los datos que teniamos seleccionados.
         private void OnClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
@@ -72,6 +77,8 @@ namespace IGU_CalorieTracker2.MVVM.View
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
+            // Hacemos override de este evento para permitir que podamos mover la ventana con el raton.
+            // Es necesario porque usamos WindowStyle = None para que no haya barra de titulo, que es por donde moveriamos la ventana normalmente.
             base.OnMouseLeftButtonDown(e);
             this.DragMove();
         }

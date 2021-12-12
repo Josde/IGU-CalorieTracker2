@@ -39,6 +39,8 @@ namespace IGU_CalorieTracker2.MVVM.View
             textoSnacks = snacksBox.Text.Trim();
             DateTime? date = eleccionFecha.SelectedDate;
             if (VM.Accept(textoDesayuno, textoComida, textoCena, textoSnacks, date)) {
+                // Si la validacion ha sido correcta y se han guardado los datos en el modelo, reseteamos el estado de la ventana.
+                // Hacemos esto por si la volvemos a abrir. Después, la escondemos como hacemos para cerrarla y redibujamos la gráfica.
                 datosIncorrectosBlock.Visibility = Visibility.Hidden;
                 eleccionFecha.Text = "";
                 desayunoBox.Text = "";
@@ -54,6 +56,7 @@ namespace IGU_CalorieTracker2.MVVM.View
         }
         private void BotonCancel_Click(object sender, RoutedEventArgs e)
         {
+            // Usamos Hide() para no perder los datos si volvemos a abrir la ventana.
             Hide();
         }
 
@@ -66,6 +69,8 @@ namespace IGU_CalorieTracker2.MVVM.View
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
+            // Hacemos override de este evento para permitir que podamos mover la ventana con el raton.
+            // Es necesario porque usamos WindowStyle = None para que no haya barra de titulo, que es por donde moveriamos la ventana normalmente.
             base.OnMouseLeftButtonDown(e);
             this.DragMove();
         }

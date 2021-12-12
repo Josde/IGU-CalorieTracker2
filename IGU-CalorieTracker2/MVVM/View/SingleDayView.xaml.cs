@@ -31,11 +31,10 @@ namespace IGU_CalorieTracker2.MVVM.View
             });
         }
 
-        //TODO: Cambiar esto
         public void Draw()
         {
             List<UIElement> toRemove = new List<UIElement>();
-            // Limpiamos el canvas excepto los elementos estaticos de la vista.
+            // Limpiamos el canvas excepto los elementos estaticos de la vista (los textblocks de desayuno, comida, cena, el dia...)
             foreach (FrameworkElement obj in GraphCanvas.Children)
             {
                 String name = obj.Name;
@@ -53,12 +52,13 @@ namespace IGU_CalorieTracker2.MVVM.View
                         break;
                 }
             }
-            // Dos bucles for para evitar cambiar la coleccion mientras iteramos sobre ella
+            // Dos bucles for para evitar cambiar la coleccion mientras iteramos sobre ella, ya que esto causa una excepción.
             foreach (UIElement obj in toRemove)
             {
                 GraphCanvas.Children.Remove(obj);
             }
             diaBlock.Text = Model.Instance.diaSeleccionado.Fecha.ToShortDateString();
+            // Finalmente, redibujamos la gráfica.
             SingleDayViewModel.Draw(GraphCanvas);
         }
 

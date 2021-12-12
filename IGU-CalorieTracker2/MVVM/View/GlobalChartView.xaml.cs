@@ -31,9 +31,9 @@ namespace IGU_CalorieTracker2.MVVM.View
             });
         }
 
-        //TODO: Cambiar esto
         public void Draw()
         {
+            //Limpiamos la grafica totalmente y volvemos a dibujarla.
             GraphCanvas.Children.Clear();
             GlobalChartViewModel.Draw(GraphCanvas);
         }

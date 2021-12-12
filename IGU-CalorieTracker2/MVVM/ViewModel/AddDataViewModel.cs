@@ -12,11 +12,13 @@ using IGU_CalorieTracker2.Utils;
 
 namespace IGU_CalorieTracker2.MVVM.ViewModel
 {
-    class AddDataViewModel : ObservableObject
+    class AddDataViewModel
     {
         public int caloriasDesayuno, caloriasComida, caloriasCena, caloriasSnacks;
         public bool Accept(String textoDesayuno, String textoComida, String textoCena, String textoSnacks, DateTime? date)
         {
+            // Validamos que todos los campos de calorias sean numeros validos, y que la fecha no este vacía.
+            // En vez de regex podríamos usar TryParse.
             Regex regex = new Regex("^\\d+");
             if (!regex.IsMatch(textoDesayuno)) {
                 return false;
@@ -40,7 +42,7 @@ namespace IGU_CalorieTracker2.MVVM.ViewModel
             comida = float.Parse(textoComida);
             cena = float.Parse(textoCena);
             snacks = float.Parse(textoSnacks);
-
+            // Guardamos los datos en el modelo.
             if (this.SaveData(desayuno, comida, cena, snacks, soloDate))
             {
                 return true;

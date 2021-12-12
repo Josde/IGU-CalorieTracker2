@@ -62,11 +62,14 @@ namespace IGU_CalorieTracker2
 
         public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            // Usamos Shutdown() para cerrar todas las ventanas
             System.Windows.Application.Current.Shutdown();
         } 
 
         public void ContextMenuButton_Click(object sender, RoutedEventArgs e)
         {
+            // Expande el ContextMenu que tiene un boton.
+            // Es necesario que el nombre del menu sea del tipo "{NombreBoton}Menu"
             RadioButton btn = sender as RadioButton;
             ContextMenu cm = this.FindName(btn.Name + "Menu") as ContextMenu;
             if (cm != null)
@@ -80,6 +83,7 @@ namespace IGU_CalorieTracker2
 
         public void DebugMenu_Generate_Click(object sender, RoutedEventArgs e)
         {
+            // Genera datos aleatorios y redibuja la grafica.
             Data.GenerateRandomData(15);
             Model.Instance.Sort();
             MainViewModel.RedrawCommand?.Execute(null);
@@ -88,6 +92,7 @@ namespace IGU_CalorieTracker2
 
         public void DebugMenu_Clear_Click(object sender, RoutedEventArgs e)
         {
+            // Borra los datos y redibuja la grafica.
             Data.Reset();
             MainViewModel.RedrawCommand?.Execute(null);
             e.Handled = true;
@@ -100,7 +105,7 @@ namespace IGU_CalorieTracker2
             ofd.Filter = "Comma-separated values (.csv)|*.csv";
             if (ofd.ShowDialog() == true)
             {
-                Model.Instance.Dias.Clear();
+                Data.Reset();
                 Model.Instance.importFromCsv(ofd.FileName);
                 MainViewModel.RedrawCommand?.Execute(null);
             }
@@ -144,6 +149,8 @@ namespace IGU_CalorieTracker2
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
+            // Hacemos override de este evento para permitir que podamos mover la ventana con el raton.
+            // Es necesario porque usamos WindowStyle = None para que no haya barra de titulo, que es por donde moveriamos la ventana normalmente.
             base.OnMouseLeftButtonDown(e);
             this.DragMove();
         }

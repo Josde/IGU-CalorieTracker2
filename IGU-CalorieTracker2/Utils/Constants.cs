@@ -5,20 +5,5 @@
         Dia,
         Global
     }
-    enum Nutriente
-    {
-        Calorias,
-        Proteinas,
-        Grasas,
-        HidratosCarbono,
-        Sal
-    }
 
-    enum Comida
-    {
-        Desayuno,
-        Comida,
-        Cena,
-        Snacks
-    }
 }
